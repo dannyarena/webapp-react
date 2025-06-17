@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
@@ -15,6 +16,11 @@ export default function HomePage() {
         <div>
             <h2>Home Page</h2>
             <p>lista film</p>
+            <ul>
+                {movies.map(movie => (
+                    <li key={movie.id}>{movie.title} ({movie.relase_year})</li>
+                ))}
+            </ul>
         </div>
     )
 }
