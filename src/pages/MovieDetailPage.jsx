@@ -14,13 +14,31 @@ export default function MovieDetailPage() {
             console-error("Errore nella chimata", err);
         });
     }, [id]);
-    
+
     const { id } = useParams();
 
+    if (!movie) {
+        return <p>Caricamento in corso...</p>;
+    }
     return (
+        <>
         <div>
-            <h2>Dettagio film</h2>
-            <p>ID film: {id}</p>
+            <h2>{movie.title}</h2>
+            <p><strong>Regista:</strong> {movie.director}</p>
+            <p><strong>Genere:</strong> {movie.genre}</p>
+            <p><strong>Anno:</strong> {movie.relase_year}</p>
+            <p><strong>Trama:</strong> {movie.abstract}</p>
+
+            <h3>Recensioni</h3>
+            <ul>
+                {movie.reviews.map((review, index) => (
+                    <li key={index}>
+                        <strong>{review.name}</strong> - voto: {review.vote}
+                        <p>{review.text}</p>
+                        </li>
+                ))}
+            </ul>
         </div>
+        </>
     );
 }
