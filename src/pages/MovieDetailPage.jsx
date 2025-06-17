@@ -1,21 +1,20 @@
-const { id } = useParams();
-
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function MovieDetailPage() {
-    const [movie, setMovies] = useState(null);
+    const { id } = useParams();
+    const [movie, setMovie] = useState(null);
     useEffect(() => {
         axios.get(`http://localhost:3000/movies/${id}`)
         .then(res => {
-            setMovies(res.data);
+            setMovie(res.data);
         })
         .catch(err => {
-            console-error("Errore nella chimata", err);
+            console.error("Errore nella chimata", err);
         });
     }, [id]);
 
-    const { id } = useParams();
 
     if (!movie) {
         return <p>Caricamento in corso...</p>;
@@ -26,7 +25,7 @@ export default function MovieDetailPage() {
             <h2>{movie.title}</h2>
             <p><strong>Regista:</strong> {movie.director}</p>
             <p><strong>Genere:</strong> {movie.genre}</p>
-            <p><strong>Anno:</strong> {movie.relase_year}</p>
+            <p><strong>Anno:</strong> {movie.release_year}</p>
             <p><strong>Trama:</strong> {movie.abstract}</p>
 
             <h3>Recensioni</h3>
