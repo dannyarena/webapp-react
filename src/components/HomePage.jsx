@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import MovieCard from "./MovieCard";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
@@ -21,7 +22,7 @@ export default function HomePage() {
                 {movies.map(movie => (
                     <li key={movie.id}>
                         <Link to={`/movies/${movie.id}`}>
-                        {movie.title} ({movie.relase_year})
+                        <MovieCard movie={(movie)} />
                         </Link>
                         </li>
                 ))}
