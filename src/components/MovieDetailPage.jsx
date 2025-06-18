@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReviewItem from "./ReviewItem";
 
 export default function MovieDetailPage() {
     const { id } = useParams();
@@ -32,8 +33,7 @@ export default function MovieDetailPage() {
             <ul>
                 {movie.reviews.map((review, index) => (
                     <li key={index}>
-                        <strong>{review.name}</strong> - voto: {review.vote}
-                        <p>{review.text}</p>
+                       <ReviewItem review={review} />
                         </li>
                 ))}
             </ul>
