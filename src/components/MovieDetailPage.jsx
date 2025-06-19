@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewItem from "./ReviewItem";
+import ReviewForm from "./ReviewForm";
 
 export default function MovieDetailPage() {
     const { id } = useParams();
@@ -37,6 +38,7 @@ export default function MovieDetailPage() {
                         </li>
                 ))}
             </ul>
+            <ReviewForm />
         </div>
         </>
     );
