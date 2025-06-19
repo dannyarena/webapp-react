@@ -19,6 +19,11 @@ export default function ReviewForm() {
         axios.post(`http://localhost:3000/movies/${id}/reviews`, formData)
         .then(res => {
             console.log("Recensione Salvata", res.data);
+            setFormData({
+                name: "",
+                vote: "",
+                text: ""
+            })
         })
         .catch(err => {
             console.error("Errore nell'invio della recensione", err);
