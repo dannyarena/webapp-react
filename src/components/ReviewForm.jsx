@@ -1,10 +1,25 @@
 import { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const [formData, setFormData] = useState({
     name: "",
     vote: "",
     text: ""
-});
+}); 
+const { id } = useParams();
+
+function handleSubmit(e) {
+    e.preventDefault();
+
+    axios.post(`http://localhost:3000/movies/${id}/reviews`, formData)
+    .then(res => {
+        console.log("Recensione Salvata", res.data);
+    })
+    .catch(err => {
+        console.error("Errore nell'invio della recensione", err);
+    })
+}
 
 export default function ReviewForm() {
     return (
