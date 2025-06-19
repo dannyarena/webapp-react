@@ -31,7 +31,7 @@ export default function ReviewForm() {
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h4>Aggiungi una recensione</h4>
 
             <div>
