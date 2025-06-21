@@ -10,9 +10,8 @@ export function LoaderProvider({ children }) {
     const [isLoading, setIsLoading] = useState(false);
 
     return (
-        <LoaderContext.provider value={{ isLoading, setIsLoading }}>
+        <LoaderContext.Provider value={{ isLoading, setIsLoading }}>
             {children}
-            
-            </LoaderContext.provider>
+        </LoaderContext.Provider>
     );
 }
