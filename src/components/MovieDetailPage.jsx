@@ -3,18 +3,26 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewItem from "./ReviewItem";
 import ReviewForm from "./ReviewForm";
+import { useLoader } from "../context/LoaderContext";
 
 export default function MovieDetailPage() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
+    const { setIsLoading } = useLoader();
+
     useEffect(() => {
+        setIsLoading(true);
+
         axios.get(`http://localhost:3000/movies/${id}`)
         .then(res => {
             setMovie(res.data);
         })
         .catch(err => {
             console.error("Errore nella chimata", err);
-        });
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
     }, [id]);
 
 
